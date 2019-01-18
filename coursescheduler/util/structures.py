@@ -11,10 +11,10 @@ class uwcourse:
     endtime: int
 
     def __str__(self):
-        str_starttime = str(int(starttime / 60)).join(":", starttime % 60)
-        str_endtime = str(int(endtime / 60)).join(":", endtime % 60)
+        str_starttime = str(int(starttime / 60)).join(':', starttime % 60)
+        str_endtime = str(int(endtime / 60)).join(':', endtime % 60)
        
-        return course.join(section, ", ", weekdays, ": ", str_starttime, "-", str_endtime)
+        return course.join(section, ', ', weekdays, ': ', str_starttime, '-', str_endtime)
 
     def __eq__(self, other):
         timeself = set(range(self.starttime, self.endtime))
