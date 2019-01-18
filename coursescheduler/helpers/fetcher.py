@@ -33,7 +33,7 @@ def get_schedule(*courses):
             if section['enrollment_capacity']-section['enrollment_total'] > 0 and 'LEC' in section['section']:
                 starttime = time_to_int(section['classes']['date']['start_time'])
                 endtime = time_to_int(section['classes']['date']['start_time'])
-                course = uwcourse(cur_course, section['section'], section['classes']['date']['weekdays'], starttime, endtime)
+                course = uwcourse(cur_course, section['section'], section['classes']['date']['weekdays'], starttime, endtime, set())
 
                 schedule.append(course)
 
