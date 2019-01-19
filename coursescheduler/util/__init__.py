@@ -1,1 +1,1 @@
-from structures import uwcourse
+from .structures import uwcourse

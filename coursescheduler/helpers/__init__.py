@@ -1,1 +1,2 @@
-from fetcher import get_schedule
+from .fetcher import getschedule
+from .scheduler import makeschedule

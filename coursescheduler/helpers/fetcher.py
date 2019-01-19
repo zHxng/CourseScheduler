@@ -1,6 +1,6 @@
 import json
-from .util.structures import uwcourse
 import os
+from util import uwcourse
 from uwaterlooapi import UWaterlooAPI
 
 
@@ -19,21 +19,23 @@ if UW_API_KEY is None:
 
 fetcher = UWaterlooAPI(api_key=UW_API_KEY)
 
-def time_to_int(strtime):
+def timetoint(strtime):
+    if strtime is None:
+        return None
     time = strtime.split(':')
-    return time[0] * 60 + time[1]
+    return int(time[0]) * 60 + int(time[1])
 
-def get_schedule(*courses):
+def getschedule(courses: list):
     schedule = []
     for cur_course in courses:
-        course_id = cur_course.split(" ")
-        course_sections = json.loads(fetcher.course_schedule(course_str[0], course_str[1]))['data']
+        course_id = cur_course.split(' ')
+        course_sections = fetcher.course_schedule(course_id[0], course_id[1])
 
         for section in course_sections:
-            if section['enrollment_capacity']-section['enrollment_total'] > 0 and 'LEC' in section['section']:
-                starttime = time_to_int(section['classes']['date']['start_time'])
-                endtime = time_to_int(section['classes']['date']['start_time'])
-                course = uwcourse(cur_course, section['section'], section['classes']['date']['weekdays'], starttime, endtime, set())
+            if int(section['enrollment_capacity'])-int(section['enrollment_total']) > 0 and 'LEC' in section['section']:
+                starttime = timetoint(section['classes'][0]['date']['start_time'])
+                endtime = timetoint(section['classes'][0]['date']['end_time'])
+                course = uwcourse(cur_course, section['section'], section['classes'][0]['date']['weekdays'], starttime, endtime, {})
 
                 schedule.append(course)
 

@@ -1,24 +1,32 @@
-from fetcher import get_schedule
-from .util.structures import uwcourse
+from . import getschedule
+from util import uwcourse
 
 
-def prune_courses(*courses, mintime, maxtime):
+restrictions = {'mintime':0, 'maxtime':1439}
+
+def prunecourses(courses: list, mintime, maxtime):
     pruned = []
     for cur_course in courses:
-        if cur_course.starttime > mintime and cur_course.endtime < maxtime:
+        if cur_course.starttime is not None and cur_course.starttime > mintime and cur_course.endtime < maxtime:
             pruned.append(cur_course)
 
     return pruned
 
-def make_schedule(*courses, mintime=0, maxtime=1439):
-    allcourses = get_schedule(courses)
+def makeschedule(courses: list, res: list):
+    for r in res:
+        rparse = r.split("=")
+        if rparse[0] in restrictions:
+            restrictions[rparse[0]] = rparse[1]
+
+    allcourses = getschedule(courses)
     allcourses.sort()
 
-    prunedcourses = prune_courses(allcourses, mintime, maxtime)
+    prunedcourses = prunecourses(allcourses, int(restrictions['mintime']), int(restrictions['maxtime']))
 
     schedule = []
     for cur_course in prunedcourses:
         if cur_course.name in courses and cur_course not in schedule:
             schedule.append(cur_course)
+            courses.remove(cur_course.name)
 
     return schedule
