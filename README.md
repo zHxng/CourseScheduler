@@ -2,8 +2,7 @@
 Schedule generator for courses at the University of Waterloo. This project is not affliated with the University of Waterloo.
 
 ## uWaterloo API
-This program requries a University of Waterloo Open Data API key. You can register for one [here.](https://uwaterloo.ca/api/register)  <br>
-If you already have an API key, create a file called apikey.txt in the /coursescheduler directory and paste your API key in there.
+This program requries a University of Waterloo Open Data API key. You can register for one [here.](https://uwaterloo.ca/api/register) If you already have an API key, create a file called apikey.txt in the /coursescheduler directory and paste your API key in there.
 
 ## Usage
 Basic Usage:
