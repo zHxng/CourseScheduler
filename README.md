@@ -17,4 +17,4 @@ Current supported restrictions are as follows:  <br>
 | Restriction | Description | Usage |
 | --------------- | ----------| ---- |
 | mintime | The earliest time a lecture can start. Time is measured in minutes from 00:00 AM | mintime=600 |
-| maxtime | The latest time a lecture can start. Time is measured in minutes from 00:00 AM | maxtime=1700 |
+| maxtime | The latest time a lecture can start. Time is measured in minutes from 00:00 AM | maxtime=1080 |
