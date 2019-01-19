@@ -3,21 +3,8 @@ import os
 from util import uwcourse
 from uwaterlooapi import UWaterlooAPI
 
-
-UW_API_KEY = os.environ.get('UW_API_KEY', None)
-
 class APIKeyMissingError(Exception):
     pass
-
-if UW_API_KEY is None:
-    raise APIKeyMissingError(
-        'Missing: UW_API_KEY '
-        'Fetching data requires an API Key. '
-        'Refer to https://uwaterloo.ca/api/ '
-        'For how to register for an API key.'
-    )
-
-fetcher = UWaterlooAPI(api_key=UW_API_KEY)
 
 def timetoint(strtime):
     if strtime is None:
@@ -26,6 +13,18 @@ def timetoint(strtime):
     return int(time[0]) * 60 + int(time[1])
 
 def getschedule(courses: list):
+    UW_API_KEY = os.environ.get('UW_API_KEY', None)
+    
+    if UW_API_KEY is None:
+        raise APIKeyMissingError(
+            "Missing: UW_API_KEY"
+            "All methods require an API Key. "
+            "Refer to https://uwaterloo.ca/api/ "
+            "For how to register for an API key."
+        )
+
+    fetcher = UWaterlooAPI(api_key=UW_API_KEY)
+    
     schedule = []
     for cur_course in courses:
         course_id = cur_course.split(' ')
