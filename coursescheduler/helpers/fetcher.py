@@ -8,7 +8,7 @@ class APIKeyMissingError(Exception):
 
 def timetoint(strtime):
     if strtime is None:
-        return None
+        return -1
     time = strtime.split(':')
     return int(time[0]) * 60 + int(time[1])
 
