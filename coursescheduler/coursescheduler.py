@@ -1,4 +1,4 @@
-from interface import setgui
+from interface import CourseScheduler
 import os
 
 def setapikey():
@@ -11,7 +11,10 @@ def setapikey():
 
 def main():
     setapikey()
-    setgui()
+
+    app = CourseScheduler()
+    app.title('CourseScheduler')
+    app.mainloop()
 
 if __name__ == '__main__':
     main()

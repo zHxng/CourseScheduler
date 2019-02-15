@@ -1,1 +1,1 @@
-from .gui import setgui
+from .gui import CourseScheduler
